@@ -1,0 +1,36 @@
+# =====================================================================
+# Configuration COMMUNE à tous les services clients du Config Server
+# (Eureka, Zipkin, Actuator)
+# =====================================================================
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+  # Traçage distribué : 100 % des requêtes sont échantillonnées en développement
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_URL:http://localhost:9411/api/v2/spans}
+
+logging:
+  pattern:
+    # Affiche traceId / spanId dans chaque ligne de log
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"

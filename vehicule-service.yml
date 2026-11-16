@@ -1,0 +1,15 @@
+# Configuration du vehicule-service (servie par le Config Server)
+server:
+  port: 8081
+
+info:
+  app:
+    name: vehicule-service
+    description: Gestion du parc automobile DriveEasy
+
+# Pas de base de données : stockage en mémoire (RAM).
+# Les propriétés "datasource" décrivent le stockage en mémoire et le jeu de données initial.
+driveeasy:
+  datasource:
+    type: in-memory
+    seed-data: true

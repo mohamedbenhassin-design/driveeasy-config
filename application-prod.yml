@@ -1,0 +1,15 @@
+# Profil "prod" commun à tous les services (activé avec --spring.profiles.active=prod)
+# Démontre la gestion des profils par le Config Server.
+management:
+  tracing:
+    sampling:
+      # En production on n'échantillonne que 10 % des requêtes
+      probability: 0.1
+  endpoint:
+    health:
+      show-details: never
+
+driveeasy:
+  datasource:
+    # Pas de données de démonstration en production
+    seed-data: false

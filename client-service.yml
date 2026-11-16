@@ -1,0 +1,18 @@
+# Configuration du client-service (servie par le Config Server)
+server:
+  port: 8082
+
+info:
+  app:
+    name: client-service
+    description: Gestion des clients DriveEasy
+
+driveeasy:
+  datasource:
+    type: in-memory
+    seed-data: true
+  # Propriétés métier
+  regles:
+    age-minimum: 21
+  services:
+    location-url: http://location-service

@@ -1,0 +1,30 @@
+# Configuration du location-service (servie par le Config Server)
+server:
+  port: 8083
+
+info:
+  app:
+    name: location-service
+    description: Gestion du cycle de vie des locations DriveEasy
+
+driveeasy:
+  datasource:
+    type: in-memory
+    seed-data: true
+  services:
+    # URLs résolues par Eureka grâce au RestTemplate @LoadBalanced
+    vehicule-url: http://vehicule-service
+    client-url: http://client-service
+  # Propriétés métier de tarification
+  tarification:
+    coefficient-penalite: 1.5
+    remise-fidele: 0.05
+    remise-vip: 0.10
+    seuil-fidele: 5
+    seuil-vip: 15
+    coefficients-categorie:
+      ECONOMIQUE: 1.0
+      COMPACTE: 1.1
+      BERLINE: 1.2
+      SUV: 1.3
+      LUXE: 1.5
